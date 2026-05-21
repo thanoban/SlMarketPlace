@@ -23,6 +23,8 @@ export const clubSchema = z.object({
   description: z.string().min(10, "Description must be at least 10 characters"),
   contact: z.string().min(1, "Contact information is required"),
   district: z.enum(SL_DISTRICTS as unknown as [string, ...string[]]),
+  clubType: z.enum(["university", "private", "community"]),
+  universityName: z.string().optional(),
 });
 
 export const eventSchema = z.object({

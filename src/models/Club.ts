@@ -1,5 +1,7 @@
 import mongoose, { Schema, Document, Model, models } from "mongoose";
 
+export type ClubType = "university" | "private" | "community";
+
 export interface ClubDocument extends Document {
   userId: mongoose.Types.ObjectId;
   name: string;
@@ -7,6 +9,8 @@ export interface ClubDocument extends Document {
   description: string;
   contact: string;
   district: string;
+  clubType: ClubType;
+  universityName?: string;
   isVerified: boolean;
   createdAt: Date;
 }
@@ -19,6 +23,8 @@ const ClubSchema = new Schema<ClubDocument>(
     description: { type: String, required: true },
     contact: { type: String, required: true },
     district: { type: String, required: true },
+    clubType: { type: String, enum: ["university", "private", "community"], required: true },
+    universityName: { type: String },
     isVerified: { type: Boolean, default: false },
   },
   { timestamps: true }
