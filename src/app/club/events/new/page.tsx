@@ -26,6 +26,9 @@ export default function NewEventPage() {
     district: "",
     venue: "",
     onlineLink: "",
+    registrationUrl: "",
+    whatsappGroupUrl: "",
+    telegramGroupUrl: "",
     startDatetime: "",
     endDatetime: "",
     goLiveAt: "",
@@ -151,6 +154,7 @@ export default function NewEventPage() {
                 <Label htmlFor="district">District *</Label>
                 <select
                   id="district"
+                  title="District"
                   value={form.district}
                   onChange={(e) => setForm({ ...form, district: e.target.value })}
                   required
@@ -184,6 +188,47 @@ export default function NewEventPage() {
               />
             </div>
           )}
+
+          {/* Registration URL */}
+          <div>
+            <Label htmlFor="registrationUrl">Registration / signup link (optional)</Label>
+            <Input
+              id="registrationUrl"
+              type="url"
+              placeholder="https://forms.google.com/... or https://eventbrite.com/..."
+              value={form.registrationUrl}
+              onChange={(e) => setForm({ ...form, registrationUrl: e.target.value })}
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              External page where attendees register or buy tickets
+            </p>
+          </div>
+
+          {/* WhatsApp / Telegram group links */}
+          <div>
+            <Label htmlFor="whatsappGroupUrl">WhatsApp group link (optional)</Label>
+            <Input
+              id="whatsappGroupUrl"
+              type="url"
+              placeholder="https://chat.whatsapp.com/..."
+              value={form.whatsappGroupUrl}
+              onChange={(e) => setForm({ ...form, whatsappGroupUrl: e.target.value })}
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              Shown to confirmed attendees after they RSVP
+            </p>
+          </div>
+
+          <div>
+            <Label htmlFor="telegramGroupUrl">Telegram channel / group link (optional)</Label>
+            <Input
+              id="telegramGroupUrl"
+              type="url"
+              placeholder="https://t.me/..."
+              value={form.telegramGroupUrl}
+              onChange={(e) => setForm({ ...form, telegramGroupUrl: e.target.value })}
+            />
+          </div>
 
           {/* Dates */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

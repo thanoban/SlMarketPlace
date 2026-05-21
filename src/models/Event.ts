@@ -16,6 +16,12 @@ export interface EventDocument extends Document {
   rejectReason?: string;
   isPromoted: boolean;
   interests: mongoose.Types.ObjectId[];
+  sourceUrl?: string;
+  registrationUrl?: string;
+  whatsappGroupUrl?: string;
+  telegramGroupUrl?: string;
+  capacity?: number;
+  viewCount: number;
   createdAt: Date;
 }
 
@@ -40,6 +46,12 @@ const EventSchema = new Schema<EventDocument>(
     rejectReason: { type: String },
     isPromoted: { type: Boolean, default: false },
     interests: [{ type: Schema.Types.ObjectId, ref: "Interest" }],
+    sourceUrl: { type: String },
+    registrationUrl: { type: String },
+    whatsappGroupUrl: { type: String },
+    telegramGroupUrl: { type: String },
+    capacity: { type: Number },
+    viewCount: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
@@ -47,6 +59,7 @@ const EventSchema = new Schema<EventDocument>(
 EventSchema.index({ status: 1, goLiveAt: 1, endDatetime: 1 });
 EventSchema.index({ clubId: 1, status: 1 });
 EventSchema.index({ interests: 1 });
+EventSchema.index({ sourceUrl: 1 }, { unique: true, sparse: true });
 
 const Event: Model<EventDocument> = (models.Event as Model<EventDocument>) || mongoose.model<EventDocument>("Event", EventSchema);
 export default Event;

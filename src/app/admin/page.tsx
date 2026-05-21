@@ -1,8 +1,9 @@
 import { connectDB } from "@/lib/mongodb";
 import Event from "@/models/Event";
 import Club from "@/models/Club";
-import { Users, Calendar, Building2, CheckCircle } from "lucide-react";
+import { Calendar, Building2, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import RunScraperButton from "./RunScraperButton";
 
 export default async function AdminOverview() {
   await connectDB();
@@ -48,6 +49,8 @@ export default async function AdminOverview() {
           </Link>
         </div>
       )}
+
+      <RunScraperButton />
     </div>
   );
 }

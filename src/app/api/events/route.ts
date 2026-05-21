@@ -45,6 +45,9 @@ export async function POST(req: NextRequest) {
       goLiveAt: new Date(parsed.data.goLiveAt),
       status,
       interests: interestIds,
+      registrationUrl: parsed.data.registrationUrl || undefined,
+      whatsappGroupUrl: parsed.data.whatsappGroupUrl || undefined,
+      telegramGroupUrl: parsed.data.telegramGroupUrl || undefined,
     });
 
     return NextResponse.json({ id: event._id.toString(), status }, { status: 201 });

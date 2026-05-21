@@ -8,6 +8,7 @@ export interface UserDocument extends Document {
   homeDistrict?: string;
   interests: mongoose.Types.ObjectId[];
   onboardingComplete: boolean;
+  avatarUrl?: string;
   createdAt: Date;
 }
 
@@ -20,6 +21,7 @@ const UserSchema = new Schema<UserDocument>(
     homeDistrict: { type: String },
     interests: [{ type: Schema.Types.ObjectId, ref: "Interest" }],
     onboardingComplete: { type: Boolean, default: false },
+    avatarUrl: { type: String },
   },
   { timestamps: true }
 );

@@ -38,6 +38,9 @@ export const eventSchema = z.object({
   endDatetime: z.string().min(1, "End date is required"),
   goLiveAt: z.string().min(1, "Go-live time is required"),
   interests: z.array(z.string()).min(1, "Select at least one interest"),
+  registrationUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  whatsappGroupUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  telegramGroupUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
 });
 
 export const interestSchema = z.object({
